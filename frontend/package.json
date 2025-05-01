@@ -1,0 +1,51 @@
+{
+  "name": "deals",
+  "version": "1.0.0",
+  "description": "A standalone React app",
+  "main": "index.js",
+  "proxy": "http://localhost:5001",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js,.jsx src",
+    "lint:fix": "eslint --ext .js,.jsx src --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.23.3",
+    "@babel/plugin-syntax-jsx": "^7.25.9",
+    "@babel/preset-react": "^7.26.3",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.53.0",
+    "eslint-webpack-plugin": "^4.0.1",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.12"
+  },
+  "dependencies": {
+    "axios": "^1.6.5",
+    "react-scripts": "^5.0.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.29.0",
+    "styled-components": "^6.1.15",
+    "nanoid": "^5.0.3",
+    "rc-slider": "^10.3.1",
+    "fastify": "^4.20.0",
+    "@fastify/http-proxy": "^9.2.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
