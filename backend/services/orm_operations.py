@@ -79,6 +79,7 @@ def get_deals():
                 "url": offer.url,
                 "smartlink": offer.smartlink,
                 "image_url": offer.image_url,
+                "image_data": offer.image_data,
                 "type": offer.type,
                 "offer": offer.offer,
                 "offer_value": offer.offer_value,
