@@ -10,6 +10,7 @@ import StoreFilter from "./components/StoreFilter";
 import { fetchCategories, fetchStores, fetchTypes } from "./components/api";
 import Cards from "./components/Cards";
 import TypeFilter from "./components/TypeFilter";
+import LoadMoreButton from "./components/LoadMoreButton";
 
 export const AppRouter = () => {
     const location = useLocation();
@@ -19,6 +20,8 @@ export const AppRouter = () => {
     const [selectedCategory, setSelectedCategory] = useState({ type: null, name: null });
     const [selectedStore, setSelectedStore] = useState(null);
     const [selectedType, setSelectedType] = useState(null);
+       const [filteredDeals, setFilteredDeals] = useState([]);
+        const [visibleCount, setVisibleCount] = useState(9);
 
     useEffect(() => {
         fetchCategories().then((data) => {
@@ -41,7 +44,8 @@ export const AppRouter = () => {
     <div className="container mx-auto px-0">
         <div className="flex flex-col h-screen w-full mb-4 mt-4">
             {/* Header */}
-            <header className="max-w-none h-16 bg-white shadow-md z-10 flex items-center px-0 w-full">
+                {/* <header className="max-w-none h-14 shadow-md z-10 flex items-center px-0 w-full bg-blue-800 text-white shadow rounded-b-lg rounded-t-lg"> */}
+                <header className="h-14 flex items-center justify-center text-sm w-full px-0">
                 <Header />
             </header>
 
@@ -54,6 +58,7 @@ export const AppRouter = () => {
                         <StoreFilter stores={stores} setSelectedStore={setSelectedStore} />
                         <TypeFilter types={types} setSelectedType={setSelectedType} />
                     </aside>
+                  
                 ) : null}
 
                 {/* Main Content */}
@@ -76,15 +81,30 @@ export const AppRouter = () => {
                                     selectedCategory={selectedCategory}
                                     selectedStore={selectedStore}
                                     selectedType={selectedType}
+                                    setFilteredDeals={setFilteredDeals}
+                                    filteredDeals={filteredDeals}
+                                    setVisibleCount={setVisibleCount}
+                                    visibleCount={visibleCount}
                                 />
                             }
                         />
                     </Routes>
                 </main>
             </div>
+                {/* Load More Button above Footer (only on /deals) */}
+                {location.pathname === "/deals" && filteredDeals.length > visibleCount && (
+                    <div className="w-full text-center my-2">
+                        <LoadMoreButton
+                            visibleCount={visibleCount}
+                            setVisibleCount={setVisibleCount}
+                            filteredDeals={filteredDeals}
+                        />
+                    </div>
+                )}
 
             {/* Footer */}
-            <footer className="h-14 bg-white border-t flex items-center justify-center text-sm w-full px-0">
+            <footer className="h-14 bg-white flex items-center justify-center text-sm w-full px-0">
+                
                 <Footer />
             </footer>
         </div>

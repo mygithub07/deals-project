@@ -9,10 +9,10 @@ import {
     Button,
 } from "@material-tailwind/react";
 
-const Cards = ({ selectedCategory, selectedStore, selectedType }) => {
+const Cards = ({ selectedCategory, selectedStore, selectedType, setFilteredDeals, filteredDeals, setVisibleCount, visibleCount }) => {
     const [deals, setDeals] = useState([]);
-    const [filteredDeals, setFilteredDeals] = useState([]);
-    const [visibleCount, setVisibleCount] = useState(9);
+    //const [filteredDeals, setFilteredDeals] = useState([]);
+   // const [visibleCount, setVisibleCount] = useState(9);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -63,9 +63,9 @@ const Cards = ({ selectedCategory, selectedStore, selectedType }) => {
     }, [selectedCategory, selectedStore, selectedType,deals]);
 
     return (
-        <div className="w-full min-h-screen flex flex-col px-2 sm:px-4 lg:px-6">
+        <div className=" min-h-screen flex flex-col px-2 sm:px-4 lg:px-6">
           <div className="flex-grow">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 items-stretch">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 items-stretch">
                 {loading ? (
                     <p>Loading deals...</p>
                 ) : error ? (
@@ -90,7 +90,7 @@ const Cards = ({ selectedCategory, selectedStore, selectedType }) => {
                                             {deal.offer_text?.slice(0, 100) || "No description available."}
                                         </Typography>
                                     </CardBody>
-                                    <CardFooter className="px-3 pb-3 pt-2 mt-auto">
+                                    <CardFooter className="px-2 pb-2 pt-1 mt-auto">
                                         <a
                                             href={deal.smartlink}
                                             target="_blank"
@@ -98,7 +98,7 @@ const Cards = ({ selectedCategory, selectedStore, selectedType }) => {
                                             className="block w-full"
                                         >
                                             <button
-                                                className="!bg-blue-600 text-white text-xs px-3 py-1.5 rounded-md hover:!bg-blue-700 transition-colors duration-200"
+                                                className="!bg-blue-800 text-white text-[11px] px-3 py-1.5 rounded-md hover:!bg-blue-600 transition-colors duration-200"
                                                 disabled={!deal.smartlink} // Optional safety
                                             >
                                                 View Deal
@@ -116,16 +116,6 @@ const Cards = ({ selectedCategory, selectedStore, selectedType }) => {
                 )}
             </div>
         </div>
-            {visibleCount < filteredDeals.length && (
-                <div className="col-span-full text-center mt-4">
-                    <button
-                        onClick={() => setVisibleCount((prev) => prev + 9)}
-                        className="!bg-blue-600 text-white px-6 py-2 rounded-md hover:!bg-blue-700 transition-colors duration-200"
-                    >
-                        Load More
-                    </button>
-                </div>
-            )}
 
         </div>
     );
